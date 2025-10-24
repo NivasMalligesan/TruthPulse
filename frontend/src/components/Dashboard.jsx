@@ -15,7 +15,7 @@ const Dashboard = () => {
     fact_checked_claims: 0
   })
 
-  const socket = io('http://localhost:5000')
+  const socket = io('https://truthpulsebackend.onrender.com')
 
   useEffect(() => {
     socket.on('new_analysis', (analysis) => {
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/stats')
+      const response = await fetch('https://truthpulsebackend.onrender.com/api/stats')
       const statsData = await response.json()
       setStats(statsData)
     } catch (error) {
@@ -41,7 +41,7 @@ const Dashboard = () => {
     if (!inputText.trim()) return
     setIsAnalyzing(true)
     try {
-      const response = await fetch('http://localhost:5000/api/analyze', {
+      const response = await fetch('https://truthpulsebackend.onrender.com/api/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: inputText }),
